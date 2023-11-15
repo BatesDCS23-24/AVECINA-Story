@@ -1,4 +1,10 @@
 $(window).on("load", function () {
+  $('#search-input').on('keyup', function() {
+    var value = $(this).val().toLowerCase();
+    $('.chapter-container').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
   const descArray = [];
   let msg = new SpeechSynthesisUtterance();
   var documentSettings = {};
@@ -100,6 +106,8 @@ $(window).on("load", function () {
   }
 
   function initMap(options, chapters) {
+
+
     createDocumentSettings(options);
 
     var chapterContainerMargin = 70;
@@ -107,6 +115,18 @@ $(window).on("load", function () {
     document.title = getSetting("_mapTitle");
     $("#header").append("<h1>" + (getSetting("_mapTitle") || "") + "</h1>");
     $("#header").append("<h2>" + (getSetting("_mapSubtitle") || "") + "</h2>");
+
+
+
+    // add search bar
+
+
+    $('#search-input').on('keyup', function() {
+      var value = $(this).val().toLowerCase();
+      $('.chapter-container').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
 
     // Add logo
     if (getSetting("_mapLogo")) {
@@ -154,6 +174,11 @@ $(window).on("load", function () {
     var currentlyInFocus; // integer to specify each chapter is currently in focus
     var overlay; // URL of the overlay for in-focus chapter
     var geoJsonOverlay;
+
+    // Add search bar
+    var searchBar = $('<div id="search-bar"><input type="text" id="search-input" placeholder="Search..."></div>');
+    $("#contents").before(searchBar);
+
 
     for (i in chapters) {
       var c = chapters[i];
@@ -215,7 +240,7 @@ $(window).on("load", function () {
 
       sourcename2 = "Services Media Credit"
       sourcelink2 = "Services Media Credit Link"
-      medialink2 = "Services Media Link"
+      medialink2 = "Media Link 2"
 
       // Add media source
       var source = "";
@@ -386,11 +411,11 @@ $(window).on("load", function () {
         console.log(i, msg.text);
         speechSynthesis.speak(msg);
       }
-
+      console.log(c,"xxxxxxxxxxxxx")
       container
         .append('<p class="chapter-header">' + c["Resource"] + "</p>")
         .append('<p class="chapter-address">' + c["Address"] + "</p>")
-        .append('<p class="chapter-phone">' + c["PhoneNumber"] + "</p>")
+        .append('<p class="chapter-phone">' + c["Phone Number"] + "</p>")
         .append(media && c[medialink] ? mediaContainer : "")
         .append(media ? source : "")
         .append(media2 && c[medialink2] ? mediaContainer2 : "")

@@ -222,3 +222,33 @@ h2 {
   font-weight: 600;
   color: red;
 }
+
+
+#search-bar {
+  position: fixed;
+  width: 200%;
+  z-index: 1000;
+}
+
+
+.search-bar {
+  position: relative;
+  width: 300px; /* Increased width */
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 15px; /* Increased padding for height */
+  font-size: 18px; /* Increased font size */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar .fa-search {
+  position: absolute;
+  top: 50%;
+  right: 15px; /* Adjusted position */
+  transform: translateY(-50%);
+  color: #ccc;
+  font-size: 20px; /* Increased icon size */
+}
