@@ -1,10 +1,34 @@
 $(window).on("load", function () {
+  // function isElementInView(element) {
+  //   var rect = element.getBoundingClientRect();
+  //   return (
+  //     rect.top >= 0 &&
+  //     rect.left >= 0 &&
+  //     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  //   );
+  // }
+
   $('#search-input').on('keyup', function() {
     var value = $(this).val().toLowerCase();
     $('.chapter-container').filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
+
+  // Scroll event to update focus based on the first element in view
+  $(window).on('scroll', function() {
+    var found = false;
+    $('.chapter-container:visible').each(function() {
+      if (isElementInView(this) && !found) {
+        $('.chapter-container').removeClass("in-focus").addClass("out-focus");
+        $(this).addClass("in-focus").removeClass("out-focus");
+        found = true;
+      }
+    });
+  });
+
+
   const descArray = [];
   let msg = new SpeechSynthesisUtterance();
   var documentSettings = {};
@@ -176,8 +200,8 @@ $(window).on("load", function () {
     var geoJsonOverlay;
 
     // Add search bar
-    var searchBar = $('<div id="search-bar"><input type="text" id="search-input" placeholder="Search..."></div>');
-    $("#contents").before(searchBar);
+    // var searchBar = $('<div id="search-bar"><input type="text" id="search-input" placeholder="Search..."></div>');
+    // $("#contents").before(searchBar);
 
 
     for (i in chapters) {
@@ -489,7 +513,9 @@ $(window).on("load", function () {
 
           // Remove styling for the old in-focus chapter and
           // add it to the new active chapter
-          $(".chapter-container").removeClass("in-focus").addClass("out-focus");
+
+          $(".chapter-container").removeClass("in-focus")
+          // .addClass("out-focus");
           $("div#container" + i)
             .addClass("in-focus")
             .removeClass("out-focus");
