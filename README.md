@@ -1,4 +1,4 @@
-# Leaflet Storymaps with Google Sheets
+# # AVECINA-Storymap with Google Sheets
 
 This is a storymap of community resources in Providence, Rhode Island, built using the [HandsOnDataViz/leaflet-storymaps-with-google-sheets](https://github.com/HandsOnDataViz/leaflet-storymaps-with-google-sheets) repository.
 
@@ -42,4 +42,4 @@ If you used our code to create a storymap prior to October 2020, you will need t
 Three options to update your code:
 - Option A: If you understand (or are willing to learn about) GitHub Desktop, use it to move copies of the newer code (index.html, scripts folder, markers folder, style.css, etc.) into your repo via your local computer. In the `google-doc-url.js` file, copy and paste the Google Sheets API key that appears in the lower half of our code, but keep your own Google Sheets ID that appears in the upper-half of your code.
 - Option B: If you originally "forked" a copy of our code, create a GitHub "pull request" to update your repo with our code revisions, including the Google Sheets API key. We recommend this option only if you understand (or are willing to learn about) GitHub pull requests, and can deal with resolving conflicts between your code and our updated code. Warning: Since this operation might overwrite some of your code,
-# AVECINA-Story
+
